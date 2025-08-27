@@ -82,10 +82,6 @@ async function connectToDbAndLoadProducts() {
             });
         });
 
-        app.listen(port, () => {
-            console.log(`Server is running on http://localhost:${port}`);
-        });
-
     } catch (error) {
         console.error('Failed to connect to MongoDB or load products:', error);
         process.exit(1); // Exit if unable to connect to DB
@@ -93,3 +89,5 @@ async function connectToDbAndLoadProducts() {
 }
 
 connectToDbAndLoadProducts();
+
+module.exports = app;
