@@ -1,0 +1,93 @@
+<%- include('partials/header') %>
+
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/hero1.webp" class="d-block w-100" alt="work out" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Your New Everyday Uniform</h5>
+        <p>Your daily assortment from New Balance, exclusively at JD</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/images/hero2.webp" class="d-block w-100" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Global Access Drop: Nike P6000</h5>
+        <p>Exclusives from around the globe only at Pepega</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/images/hero3.webp" class="d-block w-100" alt="ASICS" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Fresh Drops From ASICS</h5>
+        <p>
+          The lastest snearkers and gear build for movement, powered by design.
+        </p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#heroCarousel"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#heroCarousel"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<h2>Featured Products</h2>
+<div class="row">
+  <% products.forEach(product => { %>
+  <div class="col-md-3 mb-4">
+    <div class="card product-card">
+      <img
+        src="<%= product.image %>"
+        class="card-img-top product-img"
+        alt="<%= product.name %>"
+      />
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text">$<%= product.price.toFixed(2) %></p>
+        <form action="/cart/add/<%= product.id %>" method="post">
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>

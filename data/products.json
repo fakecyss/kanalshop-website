@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Men's Air Jordan Retro 1 Mid SE Casual Shoes",
+    "price": 140.0,
+    "image": "/images/airjordanretro1midsecasualshoes.webp",
+    "description": "Lace up in legendary style with the Men's Air Jordan Retro 1 Mid SE Casual Shoes. With details that stay true to the originals that set the streets on fire back in 1985, these special editions utilize premium materials and rich textures to revamp an all-time great for modern trendsetters.",
+    "category": "Jordan"
+  },
+  {
+    "id": 2,
+    "name": "Men's Air Jordan Retro 1 Mid Casual Shoes",
+    "price": 130.0,
+    "image": "/images/MenAirJordanRetro1MidCasualShoes.webp",
+    "description": "Continuing the legacy that goes back to 1985, the Men's Air Jordan Retro 1 Mid Casual Shoes offer a look that ballers and sneakerheads everywhere just can't get enough of.",
+    "category": "Jordan"
+  },
+  {
+    "id": 3,
+    "name": "Men's Air Jordan Retro 1 Low SE Casual Shoes",
+    "price": 130.0,
+    "image": "/images/MenAirJordanRetro1LowSECasualShoes.webp",
+    "description": "Pay homage to heritage with the Men's Air Jordan Retro 1 Low SE Casual Shoes. Premium leather and materials bring the iconic silhouette to life with all the details that made it legendary, creating a piece of sneaker history that stands the test of time and looks as fresh as when they took the streets and basketball world by storm when they debuted in 1985.",
+    "category": "Jordan"
+  },
+  {
+    "id": 4,
+    "name": "Men's Nike Dunk Low Retro Casual Shoes",
+    "price": 120.0,
+    "image": "/images/MensNikeDunkLowRetroCasualShoes.webp",
+    "description": "Back and better than ever, the Nike Dunk Low Retro Casual Shoes are a modern-day must-have rooted in tradition. Built for the courts but boasting plenty of style and comfort for the streets, these everyday essentials are a surefire way to get noticed in the 21st century. ",
+    "category": "Dunk"
+  },
+  {
+    "id": 5,
+    "name": "Men's Nike Dunk Low SE Casual Shoes",
+    "price": 120.0,
+    "image": "/images/Men'sNikeDunkLowSECasualShoes.webp",
+    "description": "Open-toe sandals perfect for summer.",
+    "category": "Dunk"
+  },
+  {
+    "id": 6,
+    "name": "Men's Air Jordan Retro 12 Basketball Shoes",
+    "price": 205.0,
+    "image": "/images/MensAirJordanRetro12BasketballShoes.webp",
+    "description": "Donning the AJ12 en route to his 11th All-Star game, ninth scoring title and fifth NBA Championship, MJ made the Air Jordan Retro 12 Basketball Shoes a cult classic. Originally inspired by the Japanese war flag and a 19th-century women’s dress boot, this model has been part of many classic hoops moments like the famous 'Flu Game' that have bolstered MJ's legacy.",
+    "category": "Jordan"
+  },
+  {
+    "id": 7,
+    "name": "Men's Nike Air Max 95 OG Casual Shoes",
+    "price": 190.0,
+    "image": "/images/MensNikeAirMax95OGCasualShoes.webp",
+    "description": "Celebrate 30 years of Air with the Men's Nike Air Max 95 OG Casual Shoes, a game-changing design with futuristic style that resonates to this day. Originally created for performance running during a bold, brash era of running sneakers, the Air Max 95 remains a favorite thanks to its wavy aesthetic, flashy design language, and Air-cushioned comfort. This rendition pays homage to the original, updating the shape to its original form and returning to the 'Big Bubble' visible Air cushioning that sneakerheads have been craving for decades.",
+    "category": "Air Max"
+  },
+  {
+    "id": 8,
+    "name": "Men's Nike Zoom Vomero 5 Casual Shoes",
+    "price": 170.0,
+    "image": "/images/MensNikeZoomVomero5CasualShoes.webp",
+    "description": "Initially created to set the pace for runners in the early 2000s, the Men's Nike Zoom Vomero 5 Casual Shoe shifts gears as a modern trendsetter to pair with your day-to-day attire. Staying true to the techy runner vibes that made it a must-have for runners in its first run, the Vomero 5 returns in all its glory with a mixed material upper, signature plastic caging exoskeleton, and Zoom Air cushioning underfoot for an all-time favorite bursting with personality and Y2K-era flair.",
+    "category": "Running"
+  }
+]

@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<div class="row">
+    <div class="col-md-3">
+        <h3>Categories</h3>
+        <div class="list-group">
+            <a href="/products" class="list-group-item list-group-item-action <%= !selectedCategory ? 'active' : '' %>">All</a>
+            <% categories.forEach(category => { %>
+                <a href="/products?category=<%= category %>" class="list-group-item list-group-item-action <%= selectedCategory === category ? 'active' : '' %>"><%= category %></a>
+            <% }) %>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0"><%= selectedCategory || 'All' %> Products</h2>
+            <form action="/products" method="GET">
+                <input type="hidden" name="category" value="<%= selectedCategory %>">
+                <select name="sort" class="form-select" onchange="this.form.submit()">
+                    <option value="" <%= !sortOption ? 'selected' : '' %>>Sort by</option>
+                    <option value="price-asc" <%= sortOption === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
+                    <option value="price-desc" <%= sortOption === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
+                </select>
+            </form>
+        </div>
+        <div class="row">
+            <% products.forEach(product => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <a href="/products/<%= product.id %>">
+                            <img src="<%= product.image %>" class="card-img-top product-img" alt="<%= product.name %>">
+                        </a>
+                        <div class="card-body">
+                            <a href="/products/<%= product.id %>" style="text-decoration: none; color: inherit;">
+                                <h5 class="card-title"><%= product.name %></h5>
+                            </a>
+                            <p class="card-text"><%= product.description.substring(0, 50) %>...</p>
+                            <p class="card-text"><strong>$<%= product.price.toFixed(2) %></strong></p>
+                            <div class="d-flex justify-content-between">
+                                <form action="/cart/add/<%= product.id %>" method="post" class="d-inline flex-fill mr-1">
+                                    <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+                                </form>
+                                <a href="/products/<%= product.id %>" class="btn btn-secondary flex-fill ml-1">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                        <a class="page-link" href="/products?category=<%= selectedCategory || '' %>&sort=<%= sortOption || '' %>&page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
