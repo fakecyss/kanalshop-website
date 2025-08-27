@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const fs = require('fs');
 
@@ -16,11 +17,23 @@ const port = 3000;
 const products = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'products.json'), 'utf8'));
 app.locals.products = products;
 
+// MongoDB Session Store
+const store = new MongoDBStore({
+    uri: process.env.MONGODB_URI,
+    collection: 'sessions'
+});
+
+// Catch errors
+store.on('error', function(error) {
+    console.error('MongoDB Session Store Error:', error);
+});
+
 // Session middleware
 app.use(session({
     secret: process.env.SESSION_SECRET || 'a-default-secret',
     resave: false,
     saveUninitialized: false,
+    store: store,
     cookie: { secure: false } // for development purposes, set to true in production with HTTPS
 }));
 
