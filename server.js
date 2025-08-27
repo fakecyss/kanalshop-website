@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
-
 const { MongoClient } = require('mongodb');
 
 const indexRouter = require('./routes/index');
@@ -12,15 +11,14 @@ const cartRouter = require('./routes/cart');
 const adminRouter = require('./routes/admin');
 
 const app = express();
-const port = 3000;
+const port = 3000; // This port is only relevant for local development, Vercel handles it.
 
-// MongoDB Session Store
+// MongoDB Session Store setup
 const store = new MongoDBStore({
     uri: process.env.MONGODB_URI,
     collection: 'sessions'
 });
 
-// Catch errors
 store.on('error', function(error) {
     console.error('MongoDB Session Store Error:', error);
 });
@@ -31,7 +29,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: store,
-    cookie: { secure: false } // for development purposes, set to true in production with HTTPS
+    cookie: { secure: false } // Set to true in production with HTTPS
 }));
 
 // View engine setup
@@ -42,13 +40,13 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware to pass cart to all views
+// Middleware to pass cart to all views (before routes that use it)
 app.use((req, res, next) => {
     res.locals.cart = req.session.cart || [];
     next();
 });
 
-// MongoDB Connection and Product Loading
+// Async function to connect to DB and load products
 async function connectToDbAndLoadProducts() {
     const client = new MongoClient(process.env.MONGODB_URI);
     try {
@@ -59,22 +57,22 @@ async function connectToDbAndLoadProducts() {
         const products = await productsCollection.find({}).toArray();
         app.locals.products = products;
         console.log('Products loaded from MongoDB');
-
-        
-
     } catch (error) {
         console.error('Failed to connect to MongoDB or load products:', error);
-        process.exit(1); // Exit if unable to connect to DB
+        // It's crucial to exit if DB connection fails on startup
+        process.exit(1);
     }
 }
 
+// Call the async function to connect and load products
+// This will run when the module is first loaded by Vercel.
 connectToDbAndLoadProducts();
 
-// Routes
+// Routes (defined after app setup, but before export)
 app.use('/', indexRouter);
-app.use('/products', productsRouter);
-app.use('/cart', cartRouter);
-app.use('/admin', adminRouter);
+app.use('./products', productsRouter);
+app.use('./cart', cartRouter);
+app.use('./admin', adminRouter);
 
 // 404 handler
 app.use((req, res, next) => {
@@ -92,4 +90,5 @@ app.use((err, req, res, next) => {
     });
 });
 
+// Export the app for Vercel
 module.exports = app;
