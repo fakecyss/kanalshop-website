@@ -60,27 +60,7 @@ async function connectToDbAndLoadProducts() {
         app.locals.products = products;
         console.log('Products loaded from MongoDB');
 
-        // Routes
-        app.use('/', indexRouter);
-        app.use('/products', productsRouter);
-        app.use('/cart', cartRouter);
-        app.use('/admin', adminRouter);
-
-        // 404 handler
-        app.use((req, res, next) => {
-            const err = new Error('Not Found');
-            err.status = 404;
-            next(err);
-        });
-
-        // Error handler
-        app.use((err, req, res, next) => {
-            res.status(err.status || 500);
-            res.render('error', {
-                message: err.message,
-                error: app.get('env') === 'development' ? err : {}
-            });
-        });
+        
 
     } catch (error) {
         console.error('Failed to connect to MongoDB or load products:', error);
@@ -89,5 +69,27 @@ async function connectToDbAndLoadProducts() {
 }
 
 connectToDbAndLoadProducts();
+
+// Routes
+app.use('/', indexRouter);
+app.use('/products', productsRouter);
+app.use('/cart', cartRouter);
+app.use('/admin', adminRouter);
+
+// 404 handler
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: app.get('env') === 'development' ? err : {}
+    });
+});
 
 module.exports = app;
