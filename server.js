@@ -48,6 +48,8 @@ app.use((req, res, next) => {
 
 // Async function to connect to DB and load products
 async function connectToDbAndLoadProducts() {
+    console.log('Attempting to connect to MongoDB...');
+    console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Set' : 'Not Set');
     const client = new MongoClient(process.env.MONGODB_URI);
     try {
         await client.connect();
